@@ -11,8 +11,14 @@ CREATE TABLE app.users (
   username      text NOT NULL UNIQUE,
   email         text NOT NULL UNIQUE,
   password_hash text NOT NULL,
+  -- Roles (see db/migrations/001_roles.sql): normal < admin < super_admin.
+  is_admin       boolean NOT NULL DEFAULT false,  -- admins manage accounts + feature flags
+  is_super_admin boolean NOT NULL DEFAULT false,  -- Tim only; implies admin, never revocable/grantable in the app
   created_at    timestamptz NOT NULL DEFAULT now()
 );
+
+-- At most one super admin can ever exist.
+CREATE UNIQUE INDEX users_single_super_admin ON app.users ((is_super_admin)) WHERE is_super_admin;
 
 
 CREATE TABLE catalog.movies (
