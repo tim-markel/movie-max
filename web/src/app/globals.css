@@ -6,6 +6,7 @@
   --muted: #8b98a5;
   --surface: #1f262d;
   --accent: #00c46a;
+  --pill: #f5b942;
 }
 
 @theme inline {
@@ -14,6 +15,7 @@
   --color-muted: var(--muted);
   --color-surface: var(--surface);
   --color-accent: var(--accent);
+  --color-pill: var(--pill);
   --font-sans: var(--font-geist-sans);
 }
 
